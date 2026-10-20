@@ -1,0 +1,125 @@
+
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =====================================
+   NotesHub Navbar Polish
+   ===================================== */
+
+/* Smooth navbar interactions */
+nav {
+  transition:
+    background-color 200ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease;
+}
+
+/* Navigation links */
+nav a {
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+/* Subtle hover effect for navbar links */
+nav a:hover {
+  text-decoration: none;
+}
+
+/* Better keyboard accessibility */
+nav a:focus-visible,
+nav button:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 3px;
+}
+
+/* Navbar buttons */
+nav button {
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+nav button:active {
+  transform: scale(0.98);
+}
+
+/* Account dropdown and floating menus */
+nav [role="menu"],
+nav [role="listbox"] {
+  animation: nav-menu-enter 160ms ease-out;
+  transform-origin: top right;
+}
+
+@keyframes nav-menu-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Notification bell */
+nav button svg {
+  transition:
+    transform 180ms ease,
+    color 180ms ease;
+}
+
+nav button:hover svg {
+  transform: scale(1.06);
+}
+
+/* Mobile navigation spacing */
+@media (max-width: 768px) {
+  nav a,
+  nav button {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  nav,
+  nav a,
+  nav button,
+  nav button svg,
+  nav [role="menu"],
+  nav [role="listbox"] {
+    animation: none !important;
+    transition: none !important;
+  }
+}
